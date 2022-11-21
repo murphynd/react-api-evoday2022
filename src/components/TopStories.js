@@ -2,14 +2,14 @@ import React from "react";
 import { Card } from "./Card";
 import useFetch from "../hooks/useFetch";
 
-function TopStories() {
-  const { error, isLoaded, topStories } = useFetch("arts");
+function TopStories({ section }) {
+  const { error, isLoaded, topStories } = useFetch(section);
 
   return (
     <>
       <section className="px-5 container mx-auto">
         <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
-          Top Stories
+          {section}
         </h1>
         {error && <div> {error} </div>}
         {!isLoaded && <div> ...Loading </div>}
