@@ -42,14 +42,21 @@ function TopStories() {
   } else {
     return (
       <>
-        <h1>Top Stories</h1>
-        <ul>
-          {topStories.map((article, index) => (
-            <li key={index}>
-              <Card article={article} />
-            </li>
-          ))}
-        </ul>
+        <section className="px-5 container mx-auto">
+          <h1 className="text-3xl font-bold underline">Top Stories</h1>
+          <ul className="grid grid-cols-3 gap-10">
+            {topStories.map((article, index) => (
+              <li key={index}>
+                <Card
+                  url={article.url}
+                  title={article.title}
+                  abstract={article.abstract}
+                  multimedia={article.multimedia[2]}
+                />
+              </li>
+            ))}
+          </ul>
+        </section>
       </>
     );
   }

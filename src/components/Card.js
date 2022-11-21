@@ -1,11 +1,18 @@
 import React from "react";
+import { ArticleImage } from "./ArticleImage";
 
-export const Card = (props) => {
+export const Card = ({ url, title, abstract, multimedia }) => {
+  console.log(multimedia);
+  console.log();
   return (
-    <div>
-      <a href={props.article.url}>{props.article.title}</a>
-      <p>{props.article.abstract}</p>
-      <img src={props.article.multimedia[2].url} alt="" />
-    </div>
+    <>
+      <article className="shadow-md bg-white rounded-3xl p-5 h-52">
+        <a className="text-cyan-500 font-semibold" href={url}>
+          {title}
+        </a>
+        <p>{abstract}</p>
+        <ArticleImage multimedia={multimedia} />
+      </article>
+    </>
   );
 };
