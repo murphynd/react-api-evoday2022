@@ -1,44 +1,16 @@
-import React, { useEffect, useReducer } from "react";
-import topStoriesReducer from "../reducers/top-stories-reducer";
+import React from "react";
 import { Card } from "./Card";
-import { getTopStoriesFailure, getTopStoriesSuccess } from "./../actions/index";
-
-const initialState = {
-  isLoaded: false,
-  topStories: [],
-  error: null,
-};
+import useFetch from "../hooks/useFetch";
 
 function TopStories() {
-  const [state, dispatch] = useReducer(topStoriesReducer, initialState);
-
-  useEffect(() => {
-    fetch(
-      `https://api.nytimes.com/svc/topstories/v2/arts.json?api-key=${process.env.REACT_APP_API_KEY}`
-    )
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(`${response.status}: ${response.statusText}`);
-        } else {
-          return response.json();
-        }
-      })
-      .then((jsonifiedResponse) => {
-        const action = getTopStoriesSuccess(jsonifiedResponse.results);
-        dispatch(action);
-      })
-      .catch((error) => {
-        const action = getTopStoriesFailure(error.message);
-        dispatch(action);
-      });
-  }, []);
-
-  const { error, isLoaded, topStories } = state;
+  const { error, isLoaded, topStories } = useFetch("arts");
 
   return (
     <>
       <section className="px-5 container mx-auto">
-        <h1 className="text-3xl font-bold p-5 underline">Top Stories</h1>
+        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+          Top Stories
+        </h1>
         {error && <div> {error} </div>}
         {!isLoaded && <div> ...Loading </div>}
         <ul className="grid grid-cols-3 gap-10">
