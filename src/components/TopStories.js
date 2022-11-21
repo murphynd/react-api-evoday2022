@@ -51,7 +51,7 @@ function TopStories() {
                   url={article.url}
                   title={article.title}
                   abstract={article.abstract}
-                  multimedia={article.multimedia[2]}
+                  multimedia={article.multimedia}
                 />
               </li>
             ))}

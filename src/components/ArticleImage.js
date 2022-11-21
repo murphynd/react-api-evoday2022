@@ -1,9 +1,10 @@
 import React from "react";
 
-export const ArticleImage = (multimedia) => {
+export const ArticleImage = ({ multimedia }) => {
+  const thumb = multimedia[2];
   return (
     <>
-      <img src={multimedia.url} alt="from NY times" />
+      <img src={thumb.url} alt={thumb.caption} loading="lazy" />
     </>
   );
 };
