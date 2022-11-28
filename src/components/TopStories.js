@@ -1,4 +1,4 @@
-import React from "react";
+import React, { memo } from "react";
 import { Card } from "./Card";
 import useFetch from "../hooks/useFetch";
 
@@ -8,12 +8,12 @@ function TopStories({ section }) {
   return (
     <>
       <section className="px-5 container mx-auto">
-        <h1 class="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
+        <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-gray-900 md:text-5xl lg:text-6xl dark:text-white">
           {section}
         </h1>
         {error && <div> {error} </div>}
         {!isLoaded && <div> ...Loading </div>}
-        <ul className="grid grid-cols-3 gap-10">
+        <ul className="grid grid-cols-2 gap-10">
           {topStories.map((article, index) => (
             <li key={index}>
               <Card
@@ -36,4 +36,4 @@ function TopStories({ section }) {
   );
 }
 
-export default TopStories;
+export default memo(TopStories);
