@@ -4,6 +4,7 @@ import useFetch from "../hooks/useFetch";
 
 function TopStories({ section }) {
   const { error, isLoaded, topStories } = useFetch(section);
+  console.log("rendered top stories");
 
   return (
     <>
@@ -36,4 +37,4 @@ function TopStories({ section }) {
   );
 }
 
-export default memo(TopStories);
+export default TopStories;
