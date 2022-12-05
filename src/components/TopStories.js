@@ -4,7 +4,8 @@ import useFetch from "../hooks/useFetch";
 
 function TopStories({ section }) {
   const { error, isLoaded, topStories } = useFetch(section);
-  console.log("rendered top stories");
+  console.log("rendered top stories for this section:", section);
+  console.log("rendered top stories  with eror, isloaded, topstories:",  error, isLoaded, topStories);
 
   return (
     <>

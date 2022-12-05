@@ -1,5 +1,6 @@
 import React from "react";
 import { ArticleImage } from "./ArticleImage";
+import { LikeButton } from "./LikeButton";
 
 export const Card = ({
   url,
@@ -13,6 +14,8 @@ export const Card = ({
   geo_facet,
   subsection,
 }) => {
+  console.log("makeing a card for: ", title );
+
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg">
       {multimedia && <ArticleImage multimedia={multimedia[1]} />}
@@ -29,6 +32,7 @@ export const Card = ({
           </span>
         ))}
       </div>
+      <LikeButton />
     </div>
   );
 };
