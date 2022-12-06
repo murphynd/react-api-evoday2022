@@ -6,12 +6,12 @@ const useFetch = (section) => {
   const initialState = {
     isLoaded: false,
     topStories: [],
-    error: null,
+    error: null
   };
 
   const [state, dispatch] = useReducer(topStoriesReducer, initialState);
   useEffect(() => {
-    console.log("running fetch");
+    console.log("use fetch with: ", section);
 
     fetch(
       `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${process.env.REACT_APP_API_KEY}`

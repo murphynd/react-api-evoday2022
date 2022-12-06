@@ -5,7 +5,7 @@ import useFetch from "../hooks/useFetch";
 function TopStories({ section }) {
   const { error, isLoaded, topStories } = useFetch(section);
   console.log("rendered top stories for this section:", section);
-  console.log("rendered top stories  with eror, isloaded, topstories:",  error, isLoaded, topStories);
+  console.log("rendered top stories topstories Title:", topStories);
 
   return (
     <>
@@ -16,15 +16,15 @@ function TopStories({ section }) {
         {error && <div> {error} </div>}
         {!isLoaded && <div> ...Loading </div>}
         <ul className="grid grid-cols-2 gap-10">
-          {topStories.map((article, index) => (
-            <li key={index}>
+          {topStories.map((article) => (
+            <li key={article.url}>
               <Card
                 url={article.url}
                 title={article.title}
-                abstract={article.abstract}
+                abstract={article.abstract}                                                         
                 multimedia={article.multimedia}
                 byline={article.byline}
-                created_date={article.created_date}
+                created_date={article.created_date}               
                 published_date={article.published_date}
                 des_facet={article.des_facet}
                 geo_facet={article.geo_facet}
