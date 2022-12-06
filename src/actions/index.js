@@ -5,7 +5,12 @@ export const getTopStoriesSuccess = (topStories) => ({
   topStories,
 });
 
-export const getTopStoriesFailure = (error) => ({
+export const getTopStoriesFailure = (errorMessage) => ({
   type: c.GET_TOP_STORIES_FAILURE,
-  error,
+  errorMessage,
+});
+
+export const getTopStoriesLoading = (isLoaded) => ({
+  type: c.GET_TOP_STORIES_LOADING,
+  isLoaded,
 });

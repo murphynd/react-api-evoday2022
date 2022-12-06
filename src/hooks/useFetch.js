@@ -1,17 +1,24 @@
 import { useEffect, useReducer } from "react";
 import topStoriesReducer from "../reducers/top-stories-reducer";
-import { getTopStoriesFailure, getTopStoriesSuccess } from "./../actions/index";
+import {
+  getTopStoriesFailure,
+  getTopStoriesSuccess,
+  getTopStoriesLoading,
+} from "./../actions/index";
 
 const useFetch = (section) => {
   const initialState = {
     isLoaded: false,
     topStories: [],
-    error: null
+    errorMessage: null,
+    isError: false,
   };
 
   const [state, dispatch] = useReducer(topStoriesReducer, initialState);
   useEffect(() => {
     console.log("use fetch with: ", section);
+    const action = getTopStoriesLoading(false);
+    dispatch(action);
 
     fetch(
       `https://api.nytimes.com/svc/topstories/v2/${section}.json?api-key=${process.env.REACT_APP_API_KEY}`
@@ -27,14 +34,14 @@ const useFetch = (section) => {
         const action = getTopStoriesSuccess(jsonifiedResponse.results);
         dispatch(action);
       })
-      .catch((error) => {
-        const action = getTopStoriesFailure(error.message);
+      .catch((errorMessage) => {
+        const action = getTopStoriesFailure(errorMessage.message);
         dispatch(action);
       });
   }, [section]);
 
-  const { error, isLoaded, topStories } = state;
-  return { error, isLoaded, topStories };
+  const { isError, errorMessage, isLoaded, topStories } = state;
+  return { isError, errorMessage, isLoaded, topStories };
 };
 
 export default useFetch;

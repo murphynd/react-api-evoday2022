@@ -8,11 +8,9 @@ import { Calculator } from "./AiCalculator";
 function App() {
   return (
     <React.Fragment>
-      {/* <Hero /> */}
+      <Hero />
       {/* <AiNews /> */}
-      <Calculator />
-    
-    
+      {/* <Calculator /> */}
     </React.Fragment>
   );
 }

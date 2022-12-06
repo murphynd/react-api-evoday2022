@@ -11,10 +11,10 @@ describe("top stories reducer actions", () => {
   });
 
   it("getTopStoriesFailure should create GET_TOP_STORIES_FAILURE action", () => {
-    const error = "An error";
-    expect(getTopStoriesFailure(error)).toEqual({
+    const errorMessage = "An error";
+    expect(getTopStoriesFailure(errorMessage)).toEqual({
       type: c.GET_TOP_STORIES_FAILURE,
-      error,
+      errorMessage,
     });
   });
 });
