@@ -1,4 +1,3 @@
-import React, { memo } from "react";
 import { Card } from "./Card";
 import useFetch from "../hooks/useFetch";
 

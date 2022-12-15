@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { LikeButton } from "./LikeButton";
 import { SectionButton } from "./SectionButton";
 import TopStories from "./TopStories";
 
