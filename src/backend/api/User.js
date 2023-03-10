@@ -4,7 +4,7 @@ const nameCheck= !/^[a-zA-Z ]*$/;
 const emailCheck = !/^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$/;
 
 // mongodb user model 
-const User = require('./../models/User');
+const User = require('../models/User');
 //password handler
 const bcrypt= require('bcrypt');
 //sign up
@@ -43,11 +43,49 @@ router.post('/signup', (req, res)=> {
     }
     else {
         User.find({email}).then(result => {
-            if(){
+            if(result.length){
+                // a user already exits 
+                res.json({
+                    status: "FAILED",
+                    message: "User with tahe provided email aready exists" 
+                })
 
             }else{
                 //try to create new user 
+
                 //password handling
+                const saltRounds = 10;
+                bcrypt.hash(password, saltRounds).then(hashPassword =>{
+                    const newUser = new User({
+                        name,
+                        email, 
+                        password: hashPassword,
+                        dateOfBirth
+                    })
+
+                    newUser.save().then(result =>{
+                        res.json({
+                            status: "SUCCESS",
+                            message: "signup successful",
+                            data: result
+                        })
+                    })
+                    .catch(err => {
+                        res.json({
+                            status: "FAILED",
+                            message: "error occured while saving user" 
+                        })
+                    })
+
+                })
+                .catch(
+                    err => {
+                        console.log(err);
+                        res.json({
+                            status: "FAILED",
+                            message: "error occured while hashing password for user" 
+                        })
+                    })
             }
 
         }).catch(err => {

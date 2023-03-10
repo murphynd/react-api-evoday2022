@@ -4,7 +4,8 @@ import {
   getTopStoriesFailure,
   getTopStoriesSuccess,
   getTopStoriesLoading,
-} from "./../actions/index";
+} from "../actions/index"
+
 
 const useFetch = (section) => {
   const initialState = {
